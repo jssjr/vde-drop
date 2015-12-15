@@ -1,4 +1,4 @@
-include vde2_config.mak
+VDE2_INCLUDE ?= /usr/local/src/vde2/include
 
 all: drop.so
 
