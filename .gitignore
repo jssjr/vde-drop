@@ -1,5 +1,10 @@
 *.a
 *.la
+*.mak
 *.o
 *.so
+Makefile
 autom4te.cache
+config.log
+config.status
+configure
