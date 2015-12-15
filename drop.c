@@ -9,7 +9,7 @@
 #include <vdecommon.h>
 #include <vdeplugin.h>
 
-static int dropevent(struct dbgcl *tag, void *arg, va_list v);
+static int discard(struct dbgcl *tag, void *arg, va_list v);
 static int drop(char *arg);
 
 struct plugin vde_plugin_data={
@@ -26,6 +26,17 @@ static struct comlist cl[]={
 static struct dbgcl dl[]= {
   {"drop/packetin","drop incoming packet",D_DROP|D_IN},
 };
+
+static int drop(char *arg)
+{
+  int active=atoi(arg);
+  int rv;
+  if (active)
+    rv=eventadd(discard,"packet",dl);
+  else
+    rv=eventdel(discard,"packet",dl);
+  return rv;
+}
 
 static int discard(struct dbgcl *event, void *arg, va_list v)
 {
