@@ -60,6 +60,8 @@ static void
 __attribute__ ((destructor))
 fini (void)
 {
+  eventdel(discard,"packet",dl);
+
   DELCL(cl);
   DELDBGCL(dl);
 }
